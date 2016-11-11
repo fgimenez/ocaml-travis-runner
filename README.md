@@ -1,6 +1,4 @@
-Simple container to reprocue travis builds for opam packages.
-
-Something like this should work from the package's project root:
+Simple container to reproduce travis builds for opam packages. Something like this should work from the package's project root:
 
 ```
 docker run \
@@ -11,4 +9,4 @@ docker run \
   -ti fgimenez/ocaml-travis-runner
 ```
 
-You can add `bash` at the end of the command to open a shell on the container and execute individual steps manually (the runner script is at `/build-script/travis-runner.sh`)
+You can add `bash` at the end of the command to open a shell on the container and execute individual steps manually (the runner script is at `/build-script/travis-runner.sh`).
