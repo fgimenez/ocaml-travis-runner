@@ -11,11 +11,11 @@ RUN apt-get update && \
     && \
     rm -rf /var/lib/apt/lists/*
 
-RUN useradd -c "Travis runner" -d /build -m travis
+RUN useradd -c "Travis runner" -d /build-script -m travis
 RUN echo 'travis ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/99-travis-user
 
-VOLUME ["/home/ubuntu"]
+VOLUME ["/build"]
 
-ADD travis-runner.sh /build/travis-runner.sh
+ADD travis-runner.sh /build-script/travis-runner.sh
 
-CMD ["/build/travis-runner.sh"]
+CMD ["/build-script/travis-runner.sh"]
