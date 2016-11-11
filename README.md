@@ -9,3 +9,5 @@ docker run \
   -e OCAML_VERSION=4.03 \
   -ti fgimenez/ocaml-travis-runner
 ```
+
+You can add `bash` at the end of the command to open a shell on the container and execute individual steps manually (the runner script is at `/build/travis-runner.sh`)
