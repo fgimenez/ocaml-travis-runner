@@ -5,7 +5,8 @@ docker run \
   -v ${PWD}:/build \
   -e PACKAGE=<package-name> \
   -e OCAML_VERSION=4.03 \
-  -e EXTRA_REMOTES=<remote-url>
+  -e EXTRA_REMOTES=<remote-url> \
+  -e PINS=<package-names> \
   -ti fgimenez/ocaml-travis-runner
 ```
 
