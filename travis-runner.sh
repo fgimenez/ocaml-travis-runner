@@ -1,13 +1,14 @@
 #!/bin/bash
 
-cd /build || exit
-wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/.travis-opam.sh
-trap 'rm .travis-opam.sh' EXIT
+SCRIPT=".travis-docker.sh"
+wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/${SCRIPT} -O /build-script/${SCRIPT}
 
-su -l -c "cd /build && \
-    TRAVIS_OS_NAME=linux \
-    OCAML_VERSION=$OCAML_VERSION \
-    PACKAGE=$PACKAGE \
-    EXTRA_REMOTES=$EXTRA_REMOTES \
-    PINS=$PINS \
-    bash -ex .travis-opam.sh" travis
+. /build-script/env.sh
+
+cp -ar /root/build/orig/. /root/build/repo
+cd /root/build/repo || exit
+git ls-files . --others | xargs rm -rf
+
+TRAVIS_OS_NAME=linux \
+    TRAVIS_REPO_SLUG=repo \
+    bash -ex /build-script/${SCRIPT}
