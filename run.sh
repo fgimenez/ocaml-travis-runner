@@ -8,12 +8,17 @@ if [ -z "$ENV_FILE" ]; then
     exit 1
 fi
 
+DIND_STORAGE=${HOME}/.dind-storage
+mkdir -p "$DIND_STORAGE"
+
 tmp=$(mktemp -d)
 docker run --privileged \
        -v $tmp:/root/build/repo \
+       -v $DIND_STORAGE:/var/lib/docker \
        --name ocaml-docker \
-       -d docker:dind
-trap 'rm -f env.list && docker rm --force ocaml-docker; rm -rf $tmp' EXIT
+       -d docker:dind \
+       --storage-driver=aufs
+trap 'docker rm --force ocaml-docker; rm -rf $tmp' EXIT
 docker run \
        -v ${PWD}:/root/build/orig \
        -v ${ENV_FILE}:/build-script/env.sh \
