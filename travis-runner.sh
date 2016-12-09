@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 SCRIPT=".travis-docker.sh"
 wget https://raw.githubusercontent.com/ocaml/ocaml-travisci-skeleton/master/${SCRIPT} -O /build-script/${SCRIPT}
