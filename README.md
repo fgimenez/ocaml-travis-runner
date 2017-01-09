@@ -1,4 +1,4 @@
-Simple containerized environment to reproduce travis builds for opam packages using the `.travis-docker.sh` script from [1]. It creates a "docker in docker" server instance and a docker client that clients to it and acts as the travis runner, creating the container in which the build is executed.
+Simple containerized environment to reproduce travis builds for opam packages using the [.travis-docker.sh script from ocaml/ocaml-ci-scripts](https://github.com/ocaml/ocaml-ci-scripts/blob/master/.travis-docker.sh). It creates a "docker in docker" server instance and a docker client that clients to it and acts as the travis runner, creating the container in which the build is executed.
 
 As a first step you need to create a file with all the required environment variables:
 
